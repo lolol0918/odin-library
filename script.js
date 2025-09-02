@@ -10,8 +10,8 @@ const booksContainer = document.querySelector(".books-grid");
 
 let myLibrary = [];
 
-myLibrary[0] = new Book("The Hobbit", "JRR Tolkien", 400, "on");
-myLibrary[1] = new Book("Hungry Caterpillar", "Big Caterpillar", 15, "on");
+myLibrary[0] = new Book("The Hobbit", "JRR Tolkien", 400, true);
+myLibrary[1] = new Book("Hungry Caterpillar", "Big Caterpillar", 15, false);
 
 renderLibrary();
 
@@ -76,7 +76,7 @@ form.addEventListener('submit', (e) => {
         titleInput.value,
         authorInput.value,
         pagesInput.value,
-        readInput.value
+        readInput.checked
     );
 
     addBookToLibrary(newBook);
