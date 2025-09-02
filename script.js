@@ -3,6 +3,10 @@ const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
 const readInput = document.getElementById("read");
+const modal = document.getElementById("bookModal");
+const openBtn = document.getElementById("openModalBtn");
+const closeBtn = document.querySelector(".closeBtn");
+
 
 
 const myLibrary = [];
@@ -33,4 +37,12 @@ form.addEventListener('submit', (e) => {
     addBookToLibrary(newBook);
 
     form.reset();
+});
+
+openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
 });
