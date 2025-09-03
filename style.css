@@ -111,6 +111,29 @@ body {
     background: #0056b3;
 }
 
+#openModalBtn {
+  background-color: #1e1e1e; /* dark gray, not pure black */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+#openModalBtn:hover {
+  background-color: #2a2a2a; /* slightly lighter hover */
+  transform: scale(1.05);
+}
+
+/* Active click effect */
+#openModalBtn:active {
+  background-color: #111;
+  transform: scale(0.97);
+}
 .checkbox-container {
     display: flex;
 }
