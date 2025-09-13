@@ -1,3 +1,5 @@
+import { Book, Library} from './classes.js';
+
 const form = document.getElementById("bookForm");
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
@@ -8,25 +10,15 @@ const openBtn = document.getElementById("openModalBtn");
 const closeBtn = document.querySelector(".closeBtn");
 const booksContainer = document.querySelector(".books-grid");
 
-
-let myLibrary = [];
-
-myLibrary[0] = new Book("The Hobbit", "JRR Tolkien", 400, true);
-myLibrary[1] = new Book("Hungry Caterpillar", "Big Caterpillar", 15, false);
+const myLibrary = new Library();
+myLibrary.addBook(new Book("The Hobbit", "JRR Tolkien", 400, true));
 
 renderLibrary();
 
-function Book(name, author, pages, read) {
-    this.id = crypto.randomUUID();
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 
 function addBookToLibrary(book) {
     // take params, create a book then store it in the array
-    myLibrary.push(book);
+    myLibrary.addBook(book);
 
     //renders the books when you add them
     renderLibrary();
@@ -34,7 +26,7 @@ function addBookToLibrary(book) {
 
 //deletes the object and renders the page again
 function deleteBook(id) {
-    myLibrary = myLibrary.filter(book => book.id !== id);
+    myLibrary.deleteBook(id);
     renderLibrary();
 };
 
@@ -42,7 +34,7 @@ function deleteBook(id) {
 function renderLibrary() {
   booksContainer.innerHTML = "";
 
-  myLibrary.forEach((book) => {
+  myLibrary.getBooks().forEach((book) => {
     const card = document.createElement("div");
     card.classList.add("book-card");
     card.innerHTML = `
@@ -62,7 +54,7 @@ function renderLibrary() {
   });
 }
 
-// ✅ Event delegation (one listener for everything)
+
 booksContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
     const bookId = e.target.dataset.id;
@@ -71,11 +63,9 @@ booksContainer.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("book-status")) {
     const bookId = e.target.dataset.id;
-    const book = myLibrary.find((b) => b.id === bookId);
-    if (book) {
-      book.read = !book.read;
-      renderLibrary();
-    }
+    const book = myLibrary.getBooks().find((b) => b.id === bookId);
+    book.toggleRead();
+    renderLibrary();
   }
 });
 

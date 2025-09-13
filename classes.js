@@ -1,4 +1,4 @@
-class Book {
+export class Book {
     constructor(name, author, pages, read) {
         this.id = crypto.randomUUID();
         this.name = name;
@@ -12,13 +12,13 @@ class Book {
     }
 }
 
-class Library {
+export class Library {
     constructor() {
         this.books = [];
     }
 
     addBook(book) {
-        this.books.add(book);
+        this.books.push(book);
     }
 
     deleteBook(id) {
