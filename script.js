@@ -94,9 +94,6 @@ form.addEventListener('submit', (e) => {
     form.reset();
 });
 
-
-
-
 openBtn.addEventListener('click', () => {
     modal.style.display = 'flex';
 });
